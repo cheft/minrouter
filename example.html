@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example</title>
+</head>
+<body>
+    <ul>
+        <li><a href="/" onclick="router.go(event);">HOME</a></li>
+        <li><a href="/todo" onclick="router.go(event);">TODO</a></li>
+        <li><a href="/start/123456" onclick="router.go(event);">:Identifier</a></li>
+        <li><a href="/pages/p1990" onclick="router.go(event);">p:Page</a></li>
+        <li><a href="/files/public/index.html" onclick="router.go(event);">*Path1</a></li>
+        <li><a href="/files/public/assets/index.css" onclick="router.go(event);">*Path2</a></li>
+    </ul>
+    <div id="out"></div>
+    <script src="minrouter.min.js"></script>
+    <script type="text/javascript">
+    	var router = new MinRouter({
+    		routes: {
+				'/': function() {
+					document.getElementById('out').innerHTML = 'You click HOME';
+				},
+
+				'/todo': 'todo',
+				'/start/:id': 'start',
+				'/pages/p:page': 'page',
+				'/files/*path': 'file'
+			},
+
+			todo: function() {
+				document.getElementById('out').innerHTML = 'You click TODO';
+			},
+			start: function(id) {
+				document.getElementById('out').innerHTML = 'You click identifier, identifier is <span style="color:red;">' + id + '</span>';
+			},
+			page: function(num) {
+				document.getElementById('out').innerHTML = 'You click identifier, Page is <span style="color:red;">' + num + '</span>';
+			},
+			file: function(path) {
+				document.getElementById('out').innerHTML = 'You click Path, path is <span style="color:red;">' + path + '</span>';
+			},
+    	});
+    	router.start();
+    </script>
+</body>
+</html>

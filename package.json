@@ -1,0 +1,23 @@
+{
+  "name": "minrouter",
+  "version": "0.0.1",
+  "description": "a micro client/server-side router, pushState, hashchange to support IE5+",
+  "main": "minrouter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheft/minrouter.git"
+  },
+  "keywords": [
+    "router",
+    "isomorphic"
+  ],
+  "author": "cheft",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cheft/minrouter/issues"
+  },
+  "homepage": "https://github.com/cheft/minrouter#readme"
+}
