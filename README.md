@@ -4,7 +4,7 @@ a micro client/server-side router, pushState, hashchange to support IE5+
 ## Fatures
 * support html5 pushState
 * support hashchange if IE < 10
-* support isomorphic router
+* support isomorphic router (riot, react)
 * support hash-bang (#!), router.sep = '!'
 * support forced server-side url, router.sep = '/'
 

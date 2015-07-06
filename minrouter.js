@@ -36,7 +36,7 @@
 			};
 		}
 	}
-
+	
 	Router.prototype.exec = function(path) {
 		for(var r in this.routes) {
 		    var route = getRegExp(r);
@@ -51,40 +51,41 @@
 		    }
 		}
 	};
-
 	Router.prototype.start = function() {
 		win.addEventListener ? win.addEventListener(evt, this.exec, false) : win.attachEvent('on' + evt, this.exec)
 	};
-
 	Router.prototype.stop = function() {
 		win.removeEventListener ? win.removeEventListener(evt, this.exec, false) : win.detachEvent('on' + evt, this.exec);
 	};
-
-	Router.prototype.go = function(e) {
-		if(!e) return;
-		var browserRefresh = false;
-		var path = e.srcElement.pathname;
+	Router.prototype.go = function(path) {
 		if('pushState' in history) {
 			history.pushState({state: path}, document.title, path);
 			this.exec(path);
 		}else {
-			if(this.sep === '/') {
-				browserRefresh = true;
-			}else {
+			if(!this.sep === '/') {
 				location.hash =  this.sep + path;
-				this.exec('/' + path);
 			}
+			this.exec(path);
 		}
+	};
+	Router.prototype.hold = function(e) {
+		if(!e) return;
+		var refresh = false;
+		var path = e.srcElement.pathname;
+		if(!('pushState' in history)) {
+			path = '/' + path;
+			if(this.sep === '/') refresh = true;
+		}
+		this.go(path);
 		if(e && e.preventDefault) {
 			e.preventDefault();      
 		}else {
-			if(!browserRefresh) {
+			if(!refresh) {
 				e.returnValue = false;              
 		 		return false; 
 			}
 		}
 	};
-
 	Router.prototype.back = function() {
 		history.back();
 	};

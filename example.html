@@ -5,12 +5,13 @@
 </head>
 <body>
     <ul>
-        <li><a href="/" onclick="router.go(event);">HOME</a></li>
-        <li><a href="/todo" onclick="router.go(event);">TODO</a></li>
-        <li><a href="/start/123456" onclick="router.go(event);">:Identifier</a></li>
-        <li><a href="/pages/p1990" onclick="router.go(event);">p:Page</a></li>
-        <li><a href="/files/public/index.html" onclick="router.go(event);">*Path1</a></li>
-        <li><a href="/files/public/assets/index.css" onclick="router.go(event);">*Path2</a></li>
+        <li><a href="/" onclick="router.hold(event);">HOME</a></li>
+        <li><a href="/todo" onclick="router.hold(event);">TODO</a></li>
+        <li><a href="/start/123456" onclick="router.hold(event);">:Identifier</a></li>
+        <li><a href="/pages/p1990" onclick="router.hold(event);">p:Page</a></li>
+        <li><a href="/files/public/index.html" onclick="router.hold(event);">*Path1</a></li>
+        <li><a href="/files/public/assets/index.css" onclick="router.hold(event);">*Path2</a></li>
+        <li><a onclick="router.go('/go');">GOTO Identifier</a></li>
     </ul>
     <div id="out"></div>
     <script src="minrouter.min.js"></script>
@@ -24,7 +25,8 @@
 				'/todo': 'todo',
 				'/start/:id': 'start',
 				'/pages/p:page': 'page',
-				'/files/*path': 'file'
+				'/files/*path': 'file',
+				'/go': 'go'
 			},
 
 			todo: function() {
@@ -39,6 +41,9 @@
 			file: function(path) {
 				document.getElementById('out').innerHTML = 'You click Path, path is <span style="color:red;">' + path + '</span>';
 			},
+			go: function() {
+				router.go('/start/654321');
+			}
     	});
     	router.start();
     </script>
