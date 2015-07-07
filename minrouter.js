@@ -1,6 +1,6 @@
 ;(function() {
 	if(!window) return;
-	var win = window, evt = 'pushState' in history ? 'popstate' : 'hashchange';
+	var win = window, evt = 'pushState' in history ? 'popstate' : 'hashchange', self = {};
 
 	var regexps = [
 		/[\-{}\[\]+?.,\\\^$|#\s]/g,
@@ -29,14 +29,9 @@
 		this.routes = opts.routes;
 		this.opts = opts;
 		this.sep = sep || '';
-		if(this.sep === '/') {
-			var self = this;
-			win.onload = function() {
-				self.exec(location.pathname);
-			};
-		}
+		this.exec(location.pathname);
+		self = this;
 	}
-	
 	Router.prototype.exec = function(path) {
 		for(var r in this.routes) {
 		    var route = getRegExp(r);
@@ -51,36 +46,41 @@
 		    }
 		}
 	};
+	Router.prototype.emmit = function(path) {
+		if('pushState' in history) {
+			path = path.state.path;
+		}else {
+			path = location.href.split('#')[1] || '';
+		}
+		self.exec(path);
+	}
 	Router.prototype.start = function() {
-		win.addEventListener ? win.addEventListener(evt, this.exec, false) : win.attachEvent('on' + evt, this.exec)
+		win.addEventListener ? win.addEventListener(evt, this.emmit, false) : win.attachEvent('on' + evt, this.emmit)
 	};
 	Router.prototype.stop = function() {
-		win.removeEventListener ? win.removeEventListener(evt, this.exec, false) : win.detachEvent('on' + evt, this.exec);
+		win.removeEventListener ? win.removeEventListener(evt, this.emmit, false) : win.detachEvent('on' + evt, this.emmit);
 	};
 	Router.prototype.go = function(path) {
 		if('pushState' in history) {
-			history.pushState({state: path}, document.title, path);
-			this.exec(path);
+			history.pushState({path: path}, document.title, path);
 		}else {
-			if(!this.sep === '/') {
-				location.hash =  this.sep + path;
+			if(this.sep !== '/') {
+				location.hash = this.sep + path;
 			}
-			this.exec(path);
 		}
+		this.exec(path);
 	};
 	Router.prototype.hold = function(e) {
 		if(!e) return;
-		var refresh = false;
 		var path = e.srcElement.pathname;
 		if(!('pushState' in history)) {
 			path = '/' + path;
-			if(this.sep === '/') refresh = true;
 		}
 		this.go(path);
 		if(e && e.preventDefault) {
 			e.preventDefault();      
 		}else {
-			if(!refresh) {
+			if(this.sep !== '/') {
 				e.returnValue = false;              
 		 		return false; 
 			}
