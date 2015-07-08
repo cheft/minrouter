@@ -29,7 +29,7 @@
 		this.routes = opts.routes;
 		this.opts = opts;
 		this.sep = sep || '';
-		this.exec(location.pathname);
+		this.go(location.pathname);
 		self = this;
 	}
 	Router.prototype.exec = function(path) {
