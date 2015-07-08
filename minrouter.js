@@ -29,7 +29,7 @@
         this.opts = opts;
         this.routes = opts.routes;
         this.sep = opts.sep || '';
-        this.go(location.pathname);
+        this.go(location.pathname, true);
         this.holdLinks(opts.links || []);
         self = this;
     }
@@ -61,9 +61,13 @@
     Router.prototype.stop = function() {
         win.removeEventListener ? win.removeEventListener(evt, this.emmit, false) : win.detachEvent('on' + evt, this.emmit);
     };
-    Router.prototype.go = function(path) {
+    Router.prototype.go = function(path, isReplace) {
         if(supportPushState) {
-            history.pushState({path: path}, document.title, path);
+            if(isReplace) {
+                history.replaceState({path: path}, document.title, path);
+            }else {
+                history.pushState({path: path}, document.title, path);
+            }
         }else {
             if(this.sep !== '/') {
                 location.hash = this.sep + path;
@@ -76,11 +80,15 @@
     };
     Router.prototype.hold = function(e) {
         if(!e) return;
-        var path = e.srcElement.pathname;
+        var path = e.srcElement.pathname, isReplace = false;
         if(!supportPushState) {
             path = '/' + path;
+        }else {
+            if(path === history.state.path) {
+                isReplace = true;
+            }
         }
-        this.go(path);
+        this.go(path, isReplace);
         if(e && e.preventDefault) {
             e.preventDefault();      
         }else {
