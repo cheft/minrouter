@@ -79,8 +79,7 @@
         history.back();
     };
     Router.prototype.hold = function(e, href) {
-        if(!e) return;
-        var isReplace = false, path = href ? href : e.target.pathname; 
+        var isReplace = false, path = href !== undefined ? href : e.target.pathname; 
         if(!supportPushState) {
             path = '/' + path;
         }else {
@@ -92,16 +91,20 @@
         if(e && e.preventDefault) {
             e.preventDefault();      
         }else {
-            if(this.sep !== '/') {
-                e.returnValue = false;              
-                return false; 
-            }
+            e.returnValue = false;              
+            return false; 
         }
     };
     Router.prototype.holdLinks = function(links) {
         for(var i = 0; i < links.length; i++) {
             links[i].onclick = function(e) {
-                self.hold(e);
+                var href;
+                alert(this.pathname);
+                if(!e) {
+                    e = win.event;
+                    href = this.pathname;
+                }
+                self.hold(e, href);
             }
         }
     };
