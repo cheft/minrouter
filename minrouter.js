@@ -99,7 +99,6 @@
         for(var i = 0; i < links.length; i++) {
             links[i].onclick = function(e) {
                 var href;
-                alert(this.pathname);
                 if(!e) {
                     e = win.event;
                     href = this.pathname;
