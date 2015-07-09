@@ -78,9 +78,10 @@
     Router.prototype.back = function() {
         history.back();
     };
-    Router.prototype.hold = function(e) {
+    Router.prototype.hold = function(e, href) {
         if(!e) return;
-        var path = e.srcElement.pathname, isReplace = false;
+        var path = href ? href : (e.srcElement ? e.srcElement.pathname : e.target.pathname); 
+        var isReplace = false;
         if(!supportPushState) {
             path = '/' + path;
         }else {

@@ -1,6 +1,6 @@
 {
   "name": "minrouter",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "a micro client/server-side router, pushState, hashchange to support IE5+",
   "main": "minrouter.js",
   "scripts": {
