@@ -80,8 +80,7 @@
     };
     Router.prototype.hold = function(e, href) {
         if(!e) return;
-        var path = href ? href : (e.srcElement ? e.srcElement.pathname : e.target.pathname); 
-        var isReplace = false;
+        var isReplace = false, path = href ? href : e.target.pathname; 
         if(!supportPushState) {
             path = '/' + path;
         }else {
