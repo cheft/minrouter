@@ -47,7 +47,7 @@
             }
         }
     };
-    Router.prototype.emmit = function(path) {
+    Router.prototype.emit = function(path) {
         if(supportPushState) {
             path = path.state.path;
         }else {
@@ -56,10 +56,10 @@
         self.exec(path);
     }
     Router.prototype.start = function() {
-        win.addEventListener ? win.addEventListener(evt, this.emmit, false) : win.attachEvent('on' + evt, this.emmit)
+        win.addEventListener ? win.addEventListener(evt, this.emit, false) : win.attachEvent('on' + evt, this.emit)
     };
     Router.prototype.stop = function() {
-        win.removeEventListener ? win.removeEventListener(evt, this.emmit, false) : win.detachEvent('on' + evt, this.emmit);
+        win.removeEventListener ? win.removeEventListener(evt, this.emit, false) : win.detachEvent('on' + evt, this.emit);
     };
     Router.prototype.go = function(path, isReplace) {
         if(supportPushState) {
