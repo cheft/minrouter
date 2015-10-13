@@ -1,5 +1,5 @@
 # minrouter
-a micro client/server-side router, pushState, hashchange to support IE5+
+a micro client/server-side router, pushState, hashchange to support IE8+
 
 ## Fatures
 * support html5 pushState
