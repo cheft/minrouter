@@ -29,7 +29,7 @@
         this.opts = opts;
         this.routes = opts.routes;
         this.sep = opts.sep || '';
-        this.go(location.pathname, true);
+        this.emit();
         this.holdLinks(opts.links || []);
         self = this;
     }
