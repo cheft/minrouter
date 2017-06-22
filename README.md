@@ -1,5 +1,5 @@
 # minrouter
-a micro middleware router that can be used in both client-side and server-side applications (e.g. Node.js/Express, Koa)
+a micro middleware router that can be used in both client-side (e.g. dot.js, vue, react) and server-side applications (e.g. Node.js/Express, Koa)
 
 ## features
 * support koa
@@ -8,31 +8,36 @@ a micro middleware router that can be used in both client-side and server-side a
 * middleware router, API like express
 
 ## preview
-![preview](preivew.gif)
+![preview](preview.gif)
 
 ## install
 
     npm install minrouter
-    
+
 ## build
     
     npm run build
 
 ## run demo
-    npm run demo // build web code
 
+```shell
+    # build the web code
+    npm run demo 
+
+    # http://localhost:3000
     npm run express
-    // http://localhost:3000
+    
 
     or
 
+    # http://localhost:4000
     npm run koa
-    // http://localhost:4000
+ ```   
 
 ## usage
 see demo dir
 
-## mini api
+## api
 * Router.get(path, action)
 * Router.addResMethod(key, fn)
 * Router.go(uri, isReplace) __only browser__
