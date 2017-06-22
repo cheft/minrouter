@@ -2,17 +2,17 @@
   "name": "minrouter",
   "version": "1.0.0",
   "description": "",
-  "main": "minrouter.js",
+  "main": "src/minrouter.js",
   "dependencies": {
-    
+    "webpack": "^2.6.1"
   },
   "devDependencies": {
     "express": "^4.15.3",
     "koa": "^2.3.0"
   },
   "scripts": {
-    "express": "node express.js",
-    "koa": "node koa.js"
+    "express": "node test/express.js",
+    "koa": "node test/koa.js"
   },
   "keywords": [
     "router",
