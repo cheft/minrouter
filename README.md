@@ -21,17 +21,16 @@ a micro middleware router that can be used in both client-side (e.g. dot.js, vue
 ## run demo
 
 ```shell
-    # build the web code
-    npm run demo 
+# build the web code
+npm run demo 
 
-    # http://localhost:3000
-    npm run express
-    
+# http://localhost:3000
+npm run express
 
-    or
+or
 
-    # http://localhost:4000
-    npm run koa
+# http://localhost:4000
+npm run koa
  ```   
 
 ## usage
