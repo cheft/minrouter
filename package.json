@@ -1,25 +1,24 @@
 {
   "name": "minrouter",
-  "version": "0.0.7",
-  "description": "a micro client/server-side router, pushState, hashchange to support IE5+",
+  "version": "1.0.0",
+  "description": "",
   "main": "minrouter.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "dependencies": {
+    
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cheft/minrouter.git"
+  "devDependencies": {
+    "express": "^4.15.3",
+    "koa": "^2.3.0"
+  },
+  "scripts": {
+    "express": "node express.js",
+    "koa": "node koa.js"
   },
   "keywords": [
     "router",
-    "isomorphic",
-    "riot",
-    "react"
+    "express",
+    "koa"
   ],
   "author": "cheft",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cheft/minrouter/issues"
-  },
-  "homepage": "https://github.com/cheft/minrouter#readme"
+  "license": "ISC"
 }
