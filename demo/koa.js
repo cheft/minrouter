@@ -22,5 +22,5 @@ router.get('/browser.bundle.js', function() {
 app.use(router)
 
 app.listen(4000, function(err) {
-  console.log('> Ready on http://localhost:3000')
+  console.log('> Ready on http://localhost:4000')
 })
