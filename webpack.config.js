@@ -1,9 +1,11 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: __dirname + "/test/browser.js",
+  entry: __dirname + "/src/minrouter.js",
   output: {
-    path: __dirname + "/test",
-    filename: "browser.bundle.js"
+    path: __dirname,
+    filename: "minrouter.min.js",
+    libraryTarget: 'umd',
+    library: 'Router'
   }
 }

@@ -1,0 +1,11 @@
+.vscode
+core
+demo
+node_modules
+.git
+.gitignore
+.npmignore
+package-lock.json
+preview.gif
+webpack.config.js
+webpack.demo.js
