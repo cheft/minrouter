@@ -1,8 +1,3 @@
-/**
- * 暂时只支持 get 方式，负责页面渲染和跳转
- * koa 如果要做 api 服务器，还是用 koa-router
- * 两种参数：path 通配符的存入 req.params 中；问号传参的存入 req.query 中
- */
 var regexps = [
   /[\-{}\[\]+?.,\\\^$|#\s]/g,
   /\((.*?)\)/g,

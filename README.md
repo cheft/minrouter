@@ -34,7 +34,7 @@ npm run koa
  ```   
 
 ## usage
-see demo dir
+> see demo directory code
 
 ## api
 * Router.get(path, action)
@@ -43,5 +43,7 @@ see demo dir
 * Router.back() __only browser__
 * Router.proxyLinks(doms) __only browser__
 * Router.destroy() __only browser__
+* req.query & req.params
+
 
 > see src/router.js
