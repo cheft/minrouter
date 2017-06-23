@@ -2,18 +2,27 @@
   "name": "minrouter",
   "version": "1.0.0-beta.2",
   "description": "a micro middleware router for isomorphic javaScript web apps",
-  "main": "minrouter.min.js",
+  "main": "src/minrouter.js",
   "dependencies": {},
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
     "express": "^4.15.3",
     "koa": "^2.3.0",
+    "preact": "^8.1.0",
+    "preact-render-to-string": "^3.6.3",
     "webpack": "^2.6.1"
   },
   "scripts": {
     "build": "webpack -p",
-    "demo": "webpack --config webpack.demo.js -p",
-    "express": "node demo/express.js",
-    "koa": "node demo/koa.js"
+    "demo": "webpack --config webpack.demo.js",
+    "express": "node demo/basic/express.js",
+    "koa": "node demo/basic/koa.js",
+    "preact": "node demo/preact/server.js"
   },
   "keywords": [
     "router",
