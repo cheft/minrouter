@@ -58,7 +58,7 @@ function exec() {
 }
 
 // borwser
-function emit(event) {
+function emit() {
   if (data.req.path === location.pathname) return
   data.req.path = location.pathname
   data.req.query = extractQuery()
@@ -88,7 +88,7 @@ function Router(req, res, next) {
   for (var m in data.resMethods) {
     data.res[m] = data.resMethods[m].bind(data)
   }
-  if (data.env !== 'browser') exec()
+  data.env === 'browser' ? emit() : exec()
 }
 
 Router.get = function(path, fn) {
