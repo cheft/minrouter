@@ -32,7 +32,7 @@ function extractParams (route, path) {
 }
 
 // borwser
-function extractParamsQuery() {
+function extractQuery() {
   var url = location.search
   var pattern = /(\w+)=([^\?|^\&]+)/ig
   var query = {}
@@ -53,7 +53,7 @@ function exec() {
     for (var j = 0; j < route.matchs.length; j++) {
       data.req.params[route.matchs[j]] = results[j]
     }
-    data.routes[i].action.call(data, data.req, data.res, data.next)
+    data.routes[i].fn.call(data, data.req, data.res, data.next)
   }
 }
 
@@ -61,7 +61,7 @@ function exec() {
 function emit(event) {
   if (data.req.path === location.pathname) return
   data.req.path = location.pathname
-  data.req.query = extractParamsQuery()
+  data.req.query = extractQuery()
   exec()
 }
 
@@ -91,12 +91,12 @@ function Router(req, res, next) {
   if (data.env !== 'browser') exec()
 }
 
-Router.get = function(path, action) {
-  data.routes.push({ path: path, action: action })
+Router.get = function(path, fn) {
+  data.routes.push({ path: path, fn: fn })
 }
 
-Router.addResMethod = function(key, fn) {
-  data.resMethods[key] = fn
+Router.addResMethod = function(name, fn) {
+  data.resMethods[name] = fn
 }
 
 /**
@@ -104,11 +104,11 @@ Router.addResMethod = function(key, fn) {
  * 需要注意的是调用history.pushState()或history.replaceState()不会触发popstate事件，
  * 只有在做出浏览器动作时，才会触发该事件，如用户点击浏览器的回退按钮（或者在Javascript代码中调用history.back()）
  */
-Router.go = function(uri, isReplace) {
+Router.go = function(path, isReplace) {
   if (isReplace)  {
-    history.replaceState({ path: uri }, '', uri);
+    history.replaceState({ path: path }, null, path);
   } else {
-    history.pushState({ path: uri }, null, uri);
+    history.pushState({ path: path }, null, path);
   }
   emit()
 }
@@ -119,18 +119,13 @@ Router.back = function() {
 }
 
 // browser, 代理链接功能
-Router.proxyLinks = function(doms) {
-  for (var i = 0; i < doms.length; i++) {
-    doms[i].addEventListener('click', function(e) {
+Router.proxyLinks = function(nodes) {
+  for (var i = 0; i < nodes.length; i++) {
+    nodes[i].addEventListener('click', function(e) {
       Router.go(e.target.href)
       e.preventDefault()
     })
   }
-}
-
-// browser
-Router.destroy = function() {
-  window.removeEventListener('popstate', emit, false)
 }
 
 module.exports = Router

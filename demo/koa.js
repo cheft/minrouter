@@ -6,10 +6,6 @@ var router = require('./routes')
 
 router.addResMethod('view', function(content) {
   console.log(content)
-  this.ctx.body = content
-})
-
-router.addResMethod('view', function(content) {
   var html = fs.readFileSync(__dirname + '/index.html')
   this.ctx.body = html.toString().replace('<h3 id="content"></h3>',
     '<h3 id="content">' + content + '</h3>')

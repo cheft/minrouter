@@ -1,6 +1,6 @@
 {
   "name": "minrouter",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "a micro middleware router for isomorphic javaScript web apps",
   "main": "minrouter.min.js",
   "dependencies": {},
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "webpack -p",
-    "demo": "webpack --config webpack.demo.js",
+    "demo": "webpack --config webpack.demo.js -p",
     "express": "node demo/express.js",
     "koa": "node demo/koa.js"
   },

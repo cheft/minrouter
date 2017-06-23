@@ -42,8 +42,7 @@ npm run koa
 * Router.go(uri, isReplace) __only browser__
 * Router.back() __only browser__
 * Router.proxyLinks(doms) __only browser__
-* Router.destroy() __only browser__
-* req.query & req.params
+* req.query & req.params, this.ctx, this.ctx.res
 
 
-> see src/router.js
+> see src/minrouter.js
