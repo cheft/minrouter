@@ -4,7 +4,8 @@ router.get('/', function(req, res) {
   res.view('Hello MinRouter')
 })
 
-router.get('/hello/:name', function(req, res) {
+router.get('/hello/:name', function(req, res)   {
+  console.log(req.url, req.path)
   res.view('Hello: ' + req.params.name + ', ' + req.query.name)
 })
 

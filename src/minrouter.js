@@ -45,10 +45,10 @@ function extractQuery() {
 function exec() {
   for (var i = 0; i < data.routes.length; i++) {
     var route = extractRoute(data.routes[i].path);
-    if (!route.regexp.test(data.req.pathname)) {
+    if (!route.regexp.test(data.req.path)) {
       continue
     }
-    var results = extractParams(route.regexp, data.req.pathname)
+    var results = extractParams(route.regexp, data.req.path)
     data.req.params = data.req.params || {}
     for (var j = 0; j < route.matchs.length; j++) {
       data.req.params[route.matchs[j]] = results[j]
@@ -59,9 +59,9 @@ function exec() {
 
 // borwser
 function emit() {
-  if (data.req.path === location.href) return
-  data.req.path = location.href
-  data.req.pathname = location.pathname
+  if (data.req.url === location.href) return
+  data.req.url = location.href
+  data.req.path = location.pathname
   data.req.query = extractQuery()
   exec()
 }
@@ -75,17 +75,15 @@ function Router(req, res, next) {
     window.addEventListener('popstate', emit, false)
   }else if (next) { // express
     data.req = req
-    // 替换掉问号后面的参数
-    data.req.pathname = data.req.path.replace(/%3F.*/g, '')
+    data.req.url = data.req.originalUrl
     data.res = res
     data.next = next
     data.env = 'express'
   } else { // koa
     data.ctx = req
     data.req = data.ctx.request
-    data.req.path = data.req.url
     // 替换掉问号后面的参数
-    data.req.pathname = data.req.url.replace(/%3F.*/g, '')
+    data.req.path = data.req.url.replace(/\?.*/g, '')
     data.res = data.ctx.response
     data.next = res
     data.env = 'koa'
@@ -111,9 +109,9 @@ Router.addResMethod = function(name, fn) {
  */
 Router.go = function(path, isReplace) {
   if (isReplace)  {
-    history.replaceState({ pathname: path }, null, path);
+    history.replaceState({ path: path }, null, path);
   } else {
-    history.pushState({ pathname: path }, null, path);
+    history.pushState({ path: path }, null, path);
   }
   emit()
 }

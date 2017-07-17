@@ -554,71 +554,71 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-!function (e, t) {
-  "object" == ( false ? "undefined" : _typeof(exports)) && "object" == ( false ? "undefined" : _typeof(module)) ? module.exports = t() :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+!function (e, r) {
+  "object" == ( false ? "undefined" : _typeof(exports)) && "object" == ( false ? "undefined" : _typeof(module)) ? module.exports = r() :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (r),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? exports.Router = t() : e.Router = t();
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? exports.Router = r() : e.Router = r();
 }(undefined, function () {
   return function (e) {
-    function t(n) {
-      if (r[n]) return r[n].exports;var o = r[n] = { i: n, l: !1, exports: {} };return e[n].call(o.exports, o, o.exports, t), o.l = !0, o.exports;
-    }var r = {};return t.m = e, t.c = r, t.i = function (e) {
+    function r(n) {
+      if (t[n]) return t[n].exports;var o = t[n] = { i: n, l: !1, exports: {} };return e[n].call(o.exports, o, o.exports, r), o.l = !0, o.exports;
+    }var t = {};return r.m = e, r.c = t, r.i = function (e) {
       return e;
-    }, t.d = function (e, r, n) {
-      t.o(e, r) || Object.defineProperty(e, r, { configurable: !1, enumerable: !0, get: n });
-    }, t.n = function (e) {
-      var r = e && e.__esModule ? function () {
+    }, r.d = function (e, t, n) {
+      r.o(e, t) || Object.defineProperty(e, t, { configurable: !1, enumerable: !0, get: n });
+    }, r.n = function (e) {
+      var t = e && e.__esModule ? function () {
         return e.default;
       } : function () {
         return e;
-      };return t.d(r, "a", r), r;
-    }, t.o = function (e, t) {
-      return Object.prototype.hasOwnProperty.call(e, t);
-    }, t.p = "", t(t.s = 0);
-  }([function (e, t) {
-    function r(e) {
-      var t = [];return e = e.replace(s[0], "\\$&").replace(s[1], "(?:$1)?").replace(s[2], function (e, r) {
-        return e && t.push(e.replace(":", "")), r ? e : "([^/?]+)";
-      }).replace(s[3], function (e, r) {
-        return e && t.push(e.replace("*", "")), "([^?]*?)";
-      }), { regexp: new RegExp("^" + e + "(?:\\?([\\s\\S]*))?$"), matchs: t };
-    }function n(e, t) {
-      for (var r = e.exec(t).slice(1), n = [], o = 0; o < r.length; o++) {
-        n.push(decodeURIComponent(r[o]) || null);
+      };return r.d(t, "a", t), t;
+    }, r.o = function (e, r) {
+      return Object.prototype.hasOwnProperty.call(e, r);
+    }, r.p = "", r(r.s = 0);
+  }([function (e, r) {
+    function t(e) {
+      var r = [];return e = e.replace(s[0], "\\$&").replace(s[1], "(?:$1)?").replace(s[2], function (e, t) {
+        return e && r.push(e.replace(":", "")), t ? e : "([^/?]+)";
+      }).replace(s[3], function (e, t) {
+        return e && r.push(e.replace("*", "")), "([^?]*?)";
+      }), { regexp: new RegExp("^" + e + "(?:\\?([\\s\\S]*))?$"), matchs: r };
+    }function n(e, r) {
+      for (var t = e.exec(r).slice(1), n = [], o = 0; o < t.length; o++) {
+        n.push(decodeURIComponent(t[o]) || null);
       }return n;
     }function o() {
       var e = location.search,
-          t = /(\w+)=([^\?|^\&]+)/gi,
-          r = {};return e.replace(t, function (e, t, n) {
-        r[t] = n;
-      }), r;
+          r = /(\w+)=([^\?|^\&]+)/gi,
+          t = {};return e.replace(r, function (e, r, n) {
+        t[r] = n;
+      }), t;
     }function u() {
       for (var e = 0; e < p.routes.length; e++) {
-        var t = r(p.routes[e].path);if (t.regexp.test(p.req.path)) {
-          var o = n(t.regexp, p.req.path);p.req.params = p.req.params || {};for (var u = 0; u < t.matchs.length; u++) {
-            p.req.params[t.matchs[u]] = o[u];
+        var r = t(p.routes[e].path);if (r.regexp.test(p.req.path)) {
+          var o = n(r.regexp, p.req.path);p.req.params = p.req.params || {};for (var u = 0; u < r.matchs.length; u++) {
+            p.req.params[r.matchs[u]] = o[u];
           }p.routes[e].fn.call(p, p.req, p.res, p.next);
         }
       }
     }function a() {
-      p.req.path !== location.pathname && (p.req.path = location.pathname, p.req.query = o(), u());
-    }function c(e, t, r) {
-      "object" == (typeof document === "undefined" ? "undefined" : _typeof(document)) ? (p.env = "browser", p.req = { query: {} }, p.res = {}, window.addEventListener("popstate", a, !1)) : r ? (p.req = e, p.res = t, p.next = r, p.env = "express") : (p.ctx = e, p.req = p.ctx.request, p.req.path = p.req.url, p.res = p.ctx.response, p.next = t, p.env = "koa");for (var n in p.resMethods) {
+      p.req.url !== location.href && (p.req.url = location.href, p.req.path = location.pathname, p.req.query = o(), u());
+    }function c(e, r, t) {
+      "object" == (typeof document === "undefined" ? "undefined" : _typeof(document)) ? (p.env = "browser", p.req = { query: {} }, p.res = {}, window.addEventListener("popstate", a, !1)) : t ? (p.req = e, p.req.url = p.req.originalUrl, p.res = r, p.next = t, p.env = "express") : (p.ctx = e, p.req = p.ctx.request, p.req.path = p.req.url.replace(/\?.*/g, ""), p.res = p.ctx.response, p.next = r, p.env = "koa");for (var n in p.resMethods) {
         p.res[n] = p.resMethods[n].bind(p);
       }"browser" === p.env ? a() : u();
     }var s = [/[\-{}\[\]+?.,\\\^$|#\s]/g, /\((.*?)\)/g, /(\(\?)?:\w+/g, /\*\w+/g],
-        p = { routes: [], resMethods: {} };c.get = function (e, t) {
-      p.routes.push({ path: e, fn: t });
-    }, c.addResMethod = function (e, t) {
-      p.resMethods[e] = t;
-    }, c.go = function (e, t) {
-      t ? history.replaceState({ path: e }, null, e) : history.pushState({ path: e }, null, e), a();
+        p = { routes: [], resMethods: {} };c.get = function (e, r) {
+      p.routes.push({ path: e, fn: r });
+    }, c.addResMethod = function (e, r) {
+      p.resMethods[e] = r;
+    }, c.go = function (e, r) {
+      r ? history.replaceState({ path: e }, null, e) : history.pushState({ path: e }, null, e), a();
     }, c.back = function () {
       history.back();
     }, c.proxyLinks = function (e) {
-      for (var t = 0; t < e.length; t++) {
-        e[t].addEventListener("click", function (e) {
+      for (var r = 0; r < e.length; r++) {
+        e[r].addEventListener("click", function (e) {
           c.go(e.target.href), e.preventDefault();
         });
       }
@@ -729,7 +729,7 @@ exports.default = Navigator;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -748,56 +748,56 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Clock = function (_Component) {
-    _inherits(Clock, _Component);
+var About = function (_Component) {
+  _inherits(About, _Component);
 
-    function Clock() {
-        _classCallCheck(this, Clock);
+  function About() {
+    _classCallCheck(this, About);
 
-        // set initial time:
-        var _this = _possibleConstructorReturn(this, (Clock.__proto__ || Object.getPrototypeOf(Clock)).call(this));
+    // set initial time:
+    var _this = _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).call(this));
 
-        _this.state.time = Date.now();
-        return _this;
+    _this.state.time = Date.now();
+    return _this;
+  }
+
+  _createClass(About, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      // update time every second
+      this.timer = setInterval(function () {
+        _this2.setState({ time: Date.now() });
+      }, 1000);
     }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      // stop when not renderable
+      clearInterval(this.timer);
+    }
+  }, {
+    key: 'render',
+    value: function render(props, state) {
+      var time = new Date(state.time).toLocaleTimeString();
+      return (0, _preact.h)(
+        'div',
+        null,
+        (0, _preact.h)(_navigator2.default, null),
+        (0, _preact.h)(
+          'div',
+          null,
+          time
+        )
+      );
+    }
+  }]);
 
-    _createClass(Clock, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this2 = this;
-
-            // update time every second
-            this.timer = setInterval(function () {
-                _this2.setState({ time: Date.now() });
-            }, 1000);
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            // stop when not renderable
-            clearInterval(this.timer);
-        }
-    }, {
-        key: 'render',
-        value: function render(props, state) {
-            var time = new Date(state.time).toLocaleTimeString();
-            return (0, _preact.h)(
-                'div',
-                null,
-                (0, _preact.h)(_navigator2.default, null),
-                (0, _preact.h)(
-                    'div',
-                    null,
-                    time
-                )
-            );
-        }
-    }]);
-
-    return Clock;
+  return About;
 }(_preact.Component);
 
-exports.default = Clock;
+exports.default = About;
 
 /***/ }),
 /* 6 */
