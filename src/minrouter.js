@@ -80,7 +80,8 @@ function Router(req, res, next) {
   } else { // koa
     data.ctx = req
     data.req = data.ctx.request
-    data.req.path = data.req.url
+    // 替换问号后面的地址，TODO: 考虑将path改成pathname，同时考虑 express 情况
+    data.req.path = data.req.url.replace(/\?.*/g, '')
     data.res = data.ctx.response
     data.next = res
     data.env = 'koa'
