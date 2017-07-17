@@ -1,6 +1,6 @@
 {
   "name": "minrouter",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "a micro middleware router for isomorphic javaScript web apps",
   "main": "src/minrouter.js",
   "dependencies": {},
