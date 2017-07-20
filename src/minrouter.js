@@ -42,19 +42,22 @@ function extractQuery() {
   return query;
 }
 
-function exec() {
+async function exec() {
+  var match = false
   for (var i = 0; i < data.routes.length; i++) {
     var route = extractRoute(data.routes[i].path);
     if (!route.regexp.test(data.req.path)) {
       continue
     }
+    match = true
     var results = extractParams(route.regexp, data.req.path)
     data.req.params = data.req.params || {}
     for (var j = 0; j < route.matchs.length; j++) {
       data.req.params[route.matchs[j]] = results[j]
     }
-    data.routes[i].fn.call(data, data.req, data.res, data.next)
+    await data.routes[i].fn.call(data, data.req, data.res, data.next)
   }
+  if (!match && typeof data.next === 'function') await data.next()
 }
 
 // borwser
@@ -67,7 +70,7 @@ function emit() {
 }
 
 var data = {routes: [], resMethods: {}}
-function Router(req, res, next) {
+async function Router(req, res, next) {
   if (typeof document === 'object') { // browser
     data.env = 'browser'
     data.req = {query: {}}
@@ -91,7 +94,7 @@ function Router(req, res, next) {
   for (var m in data.resMethods) {
     data.res[m] = data.resMethods[m].bind(data)
   }
-  data.env === 'browser' ? emit() : exec()
+  data.env === 'browser' ? emit() : await exec()
 }
 
 Router.get = function(path, fn) {
