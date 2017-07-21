@@ -2,6 +2,7 @@ var fs = require('fs')
 var koa = require('koa')
 var app = new koa()
 
+require("babel-polyfill");
 require('babel-core/register')
 
 var ssr = require('./ssr')

@@ -8,3 +8,4 @@ package-lock.json
 preview.gif
 webpack.config.js
 webpack.demo.js
+minrouter.min.js

@@ -1,4 +1,4 @@
-var router = require('../../minrouter.min')
+var router = require('../../src/minrouter')
 
 router.get('/', function(req, res) {
   res.view('Home')
